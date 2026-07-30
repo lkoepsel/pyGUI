@@ -1,4 +1,3 @@
-#!/usr/bin/env -S uv run python
 def main():
     print("Hello from text-based!")
 

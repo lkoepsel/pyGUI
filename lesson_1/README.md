@@ -8,14 +8,8 @@ windows on macOS.
 
 ## Running the program
 
-From the project folder (or from inside `lesson_1/`):
-
-```bash
-./lesson_1/main.py
-```
-
-The `./` is required — see the **Security** section of the main project
-README for why. You can also run it as `uv run python lesson_1/main.py`.
+In Thonny: **File → Open…**, choose `lesson_1/main.py`, and click the **Run**
+button (or press **F5**).
 
 A window appears in the bottom-right quadrant of your screen. Press the
 button and watch it change.
@@ -24,23 +18,10 @@ button and watch it change.
 
 ## The code, section by section
 
-### 1. The shebang line
-
-```python
-#!/usr/bin/env -S uv run python
-```
-
-This first line lets you run the file directly (`./main.py`). The
-operating system reads it and hands the file to `uv`, which runs it with
-the project's Python and installed libraries. It must be the very first
-line of the file.
-
-### 2. Imports
+### 1. Imports
 
 ```python
 from guizero import App, Text, PushButton
-
-import guisetup
 ```
 
 We import the three guizero *classes* this program uses:
@@ -49,23 +30,7 @@ We import the three guizero *classes* this program uses:
 * `Text` — a label that displays a string in the window.
 * `PushButton` — a clickable button.
 
-`guisetup` is this project's small helper module (it lives at the project
-root and is installed into the environment, which is why any lesson
-folder can import it).
-
-### 3. `guisetup.configure()`
-
-```python
-# macOS/uv: point tkinter at its Tcl/Tk data before creating a window
-guisetup.configure()
-```
-
-On macOS with uv's Python, tkinter needs to be told where its Tcl/Tk
-data files live *before the first window is created*, or the program
-crashes with `Cannot find a usable init.tcl`. This call sets that up. On
-Windows and Linux it does nothing — so the same file runs everywhere.
-
-### 4. The `pressed()` function — an event handler
+### 2. The `pressed()` function — an event handler
 
 ```python
 # when the button is pressed, this function runs
@@ -79,7 +44,7 @@ def pressed():
 
 This is the heart of event-driven programming. Notice that **nothing in
 the program ever calls `pressed()` directly**. Instead, the function is
-handed to the button when it is created (section 7), and guizero calls
+handed to the button when it is created (section 5), and guizero calls
 it *for us* every time the user clicks. A function used this way is
 called a **callback** (or *event handler*).
 
@@ -97,7 +62,7 @@ This is guizero's style throughout: you *assign* to a property
 (`button.text_color = "red"`), you don't call a method. The window
 updates immediately on each assignment.
 
-### 5. The `move()` function — dropping down to tkinter
+### 3. The `move()` function — dropping down to tkinter
 
 ```python
 # guizero doesn't set the location of a window,
@@ -144,7 +109,7 @@ Step by step:
   The `f"..."` is an **f-string**: Python fills in the variable values
   between the `{ }` braces.
 
-### 6. Creating the app — hidden
+### 4. Creating the app — hidden
 
 ```python
 # start app as hidden, so no flash at the default position
@@ -164,7 +129,7 @@ yet. Then `move()` positions it while it is still invisible.
 Order matters here: `move()` uses `app`, so it can only be called after
 `app` exists.
 
-### 7. Adding the widgets
+### 5. Adding the widgets
 
 ```python
 # setup the text for the app and create a button
@@ -186,7 +151,7 @@ Two details worth noticing:
   function *once, right now*, and hand the button its return value —
   a classic beginner bug worth trying on purpose to see what happens.
 
-### 8. Show the window and start the event loop
+### 6. Show the window and start the event loop
 
 ```python
 # show overwrites "visible=False" above, display puts it on the screen
@@ -194,7 +159,7 @@ app.show()
 app.display()
 ```
 
-`app.show()` undoes the `visible=False` from section 6 — the window
+`app.show()` undoes the `visible=False` from section 4 — the window
 appears for the first time, already styled, populated, and in the right
 place.
 

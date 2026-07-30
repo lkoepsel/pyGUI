@@ -1,10 +1,4 @@
-#!/usr/bin/env -S uv run python
 from guizero import App, Text, PushButton
-
-import guisetup
-
-# macOS/uv: point tkinter at its Tcl/Tk data before creating a window
-guisetup.configure()
 
 
 # Functions -----------------------------------------------------------

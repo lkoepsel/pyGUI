@@ -101,3 +101,27 @@ a time (don't call `app.display()` in the Shell; that's only for programs):
 >>> t = Text(app, text="hello")  # text appears in it
 >>> t.color = "red"              # ...and turns red as you type
 ```
+
+## Notes
+
+### Commenting shortcuts on macOS
+
+Thonny's menu lists **Alt+3** (Comment out) and **Alt+4** (Uncomment), but on a
+Mac those keys type the `£` and `¢` characters instead — the shortcuts never
+reach Thonny. Use **⌘3** (**Edit → Toggle comment**) instead: select the lines
+and press ⌘3 to comment them, ⌘3 again to uncomment. One shortcut does both.
+
+If you prefer a different key (for example ⌘/, as used by many other editors),
+Thonny reads shortcut overrides from its configuration file:
+
+1. **Quit Thonny completely first.** This step matters: Thonny rewrites its
+   configuration file when it exits, so any edit made while Thonny is running
+   is silently erased.
+2. Open `~/Library/Thonny/configuration.ini` in a text editor and add:
+
+   ```ini
+   [shortcuts]
+   toggle_comment = <Command-Key-slash>
+   ```
+
+3. Start Thonny. **Edit → Toggle comment** now responds to ⌘/.

@@ -100,9 +100,19 @@ t.text_color = (0, 255, 0)    # RGB tuples work too — this is green
 t.text_color = "#3366ff"      # ...as do hex strings
 ```
 
-## Notes
+## Keyboard Shortcuts
+
+Using keyboard shortcuts can speed your development and reduce stress on your hands. Try using these keyboard commands instead of the mouse:
+
+| Action | macOS | Windows |
+| ------ | ----- | ------- |
+| Run a program | `Cmd-r` | `Ctrl-r` |
+| Comment/Uncomment a line | `Cmd-/` (see below) | `Alt-3` (comment) /`Alt-4` (uncomment) |
+| Exit the app running | `Cmd-q` |   |
 
 ### Commenting shortcuts on macOS
+
+[Thonny Wiki on custom shortcuts](https://github.com/thonny/thonny/wiki/Custom-shortcuts)
 
 Thonny's menu lists **Alt+3** (Comment out) and **Alt+4** (Uncomment), but on a
 Mac those keys type the `£` and `¢` characters instead — the shortcuts never

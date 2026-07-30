@@ -1,0 +1,12 @@
+{
+    "cSpell.words": [
+        "guisetup",
+        "guizero"
+    ],
+    // Use the uv-created virtual environment so Pylance can resolve
+    // guizero, guisetup, and any other installed packages.
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}"
+    ]
+}

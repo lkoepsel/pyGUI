@@ -1,9 +1,6 @@
 #!/usr/bin/env -S uv run python
-from guizero import App, Text
-
 import guisetup
-
-guisetup.configure()  # macOS/uv: point tkinter at its Tcl/Tk data before creating a window
+from guizero import App, Text
 
 app = App(title="Hello guizero")
 Text(app, text="Hello, guizero!")

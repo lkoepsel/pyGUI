@@ -9,10 +9,15 @@ fails with::
 
 This module points ``TCL_LIBRARY`` / ``TK_LIBRARY`` at the real files inside the
 base interpreter, computed at runtime so it keeps working across Python patch
-updates.  Import it *before* importing ``tkinter`` or ``guizero``::
+updates.  Importing ``tkinter``/``guizero`` is fine without it; only *creating a
+window* needs the variables, so call ``configure()`` any time before the first
+``Tk()`` / ``App()``::
 
-    import guisetup  # noqa: F401  -- must come first
+    import guisetup
     import tkinter as tk
+
+    guisetup.configure()  # before creating a window
+    root = tk.Tk()
 
 It is a no-op if the variables are already set or the data can't be found, so it
 is harmless on Windows/Linux or with a Homebrew Python.
@@ -40,6 +45,3 @@ def configure():
         tk = _find_data_dir("tk.tcl")  # e.g. .../lib/tk9.0
         if tk:
             os.environ["TK_LIBRARY"] = tk
-
-
-configure()

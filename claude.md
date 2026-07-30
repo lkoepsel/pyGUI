@@ -74,11 +74,16 @@ You should see something like `tkinter OK, Tk 9.0`.
 > copied. This repo includes a small helper, **`guisetup.py`**, that fixes this:
 > import it *before* `tkinter`/`guizero` and it points Tcl/Tk at the right files.
 > It is a no-op on Windows/Linux or with a Homebrew Python.
+>
+> `guisetup` is installed into the project environment as a module (via the
+> `[build-system]` in `pyproject.toml`), so `import guisetup` works from any
+> lesson subfolder — you never copy the file around. After cloning the repo,
+> run `uv sync` once to install it.
 
 To confirm a window really opens:
 
 ```bash
-uv run python -c "import guisetup, tkinter as tk; r=tk.Tk(); r.after(500, r.destroy); r.mainloop(); print('window OK')"
+uv run python -c "import guisetup; guisetup.configure(); import tkinter as tk; r=tk.Tk(); r.after(500, r.destroy); r.mainloop(); print('window OK')"
 ```
 
 A small window flashes on screen and you get `window OK`.
@@ -102,16 +107,20 @@ them easy to run:
 * `#!/usr/bin/env -S uv run python` — a *shebang* that lets you run the file
   directly; the OS hands it to `uv`, which uses the project's Python and
   dependencies. Must be the very first line.
-* `import guisetup` — the macOS/uv fix described in step 4. Keep it above the
-  `tkinter`/`guizero` imports. (On Windows or Linux it does nothing, so the same
-  file runs everywhere.)
+* `import guisetup` plus a `guisetup.configure()` call before the first window
+  is created — the macOS/uv fix described in step 4. Imports can stay at the top
+  as usual; only opening a window needs the fix. (On Windows or Linux
+  `configure()` does nothing, so the same file runs everywhere.)
 
 `hello_tk.py`:
 
 ```python
 #!/usr/bin/env -S uv run python
-import guisetup  # noqa: F401  -- macOS/uv: let tkinter find its Tcl/Tk data; must be first
 import tkinter as tk
+
+import guisetup
+
+guisetup.configure()  # macOS/uv: point tkinter at its Tcl/Tk data before creating a window
 
 app = tk.Tk()
 app.title("Hello tkinter")
@@ -123,8 +132,11 @@ app.mainloop()
 
 ```python
 #!/usr/bin/env -S uv run python
-import guisetup  # noqa: F401  -- macOS/uv: let tkinter find its Tcl/Tk data; must be first
 from guizero import App, Text
+
+import guisetup
+
+guisetup.configure()  # macOS/uv: point tkinter at its Tcl/Tk data before creating a window
 
 app = App(title="Hello guizero")
 Text(app, text="Hello, guizero!")

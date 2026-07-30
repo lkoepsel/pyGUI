@@ -1,0 +1,7 @@
+#!/usr/bin/env -S uv run python
+def main():
+    print("Hello from text-based!")
+
+
+if __name__ == "__main__":
+    main()

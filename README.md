@@ -1,24 +1,16 @@
 # Developing a Python GUI Lesson
 
-This repository contains test code and instructional material for teaching
-community college students how to program in Python. Specifically, **tkinter**
-and a library called **guizero** are used to help students understand
-object-oriented programming as well as GUI development — content that is more
+This repository contains test code and instructional material for teaching community college students how to program in Python. Specifically, **tkinter** and a library called **guizero** are used to help students understand object-oriented programming as well as GUI development. This content can be more
 interesting to students than text-based programs and procedural programming.
 
 ## Libraries
 
-* [tkinter](https://docs.python.org/3/library/tkinter.html) — Python's built-in
-  GUI library.
-* [guizero](https://github.com/lawsie/guizero) — a wrapper for tkinter designed
-  to make it easier for students to learn how to program GUI programs.
+* [tkinter](https://docs.python.org/3/library/tkinter.html) — Python's built-in GUI library.
+* [guizero](https://github.com/lawsie/guizero) — a wrapper for tkinter designed to make it easier for students to learn how to program GUI programs.
 
 ## Installation
 
-The development platform for this course is **[Thonny](https://thonny.org)** —
-a free Python editor built for beginners. It runs the same way on macOS,
-Windows, and Linux, and on macOS/Windows it **bundles its own Python with
-tkinter already working**, so there is nothing else to install or configure.
+The development platform for this course is **[Thonny](https://thonny.org)**, a free Python editor built for beginners. It runs the same way on macOS, Windows, and Linux, and on macOS/Windows it **bundles its own Python with tkinter already working**, so there is nothing else to install or configure.
 
 ### 1. Install Thonny
 
@@ -26,9 +18,7 @@ Download the installer for your system from [thonny.org](https://thonny.org)
 and run it.
 
 * **macOS / Windows:** the installer includes Python and tkinter — you're done.
-* **Linux:** install with your package manager (e.g.
-  `sudo apt install thonny`), which brings in Python and Tk support. If
-  tkinter is ever missing, `sudo apt install python3-tk` fixes it.
+* **Linux:** install with your package manager (e.g. `sudo apt install thonny`), which brings in Python and Tk support. If tkinter is ever missing, `sudo apt install python3-tk` fixes it.
 
 ### 2. Verify tkinter
 
@@ -55,11 +45,9 @@ git clone git@github.com:lkoepsel/pyGUI.git
 
 or use GitHub's **Code → Download ZIP** button and unzip it.
 
-### 5. Run your first program
+### 5. Run your first program(s)
 
-In Thonny: **File → Open…**, choose `hello/hello_tk.py`, and click the **Run**
-button (or press **F5**). A small window appears. Then try
-`hello/hello_guizero.py` — the same idea, written with guizero.
+In Thonny: **File → Open…**, choose `hello/hello_tk.py`, and click the **Run** button (or press **F5**). A small window appears. Then try `hello/hello_guizero.py` — the same idea, written with guizero. Finally, just to show how a text-based program works, do the same for `main.py`.
 
 `hello_tk.py`:
 
@@ -82,12 +70,20 @@ Text(app, text="Hello, guizero!")
 app.display()
 ```
 
+`main.py`
+```python
+def main():
+    print("Hello from text-based!")
+
+
+if __name__ == "__main__":
+    main()
+```
 ## Lessons
 
-* [`hello/`](hello) — minimal first programs in tkinter and guizero.
+* [`hello/`](hello) — minimal first programs in tkinter, guizero, and text.
 * [`lesson_1/`](lesson_1) — the Button App: callbacks, styling widget
-  properties, and window placement. See its
-  [README](lesson_1/README.md) for a section-by-section walkthrough.
+  properties, and window placement. See its [README](lesson_1/README.md) for a section-by-section walkthrough.
 
 ## Experimenting in the Shell
 
@@ -96,10 +92,12 @@ with — a great way to explore. Create a window live and change it one line at
 a time (don't call `app.display()` in the Shell; that's only for programs):
 
 ```python
->>> from guizero import App, Text
->>> app = App(title="live")      # a window appears
->>> t = Text(app, text="hello")  # text appears in it
->>> t.color = "red"              # ...and turns red as you type
+from guizero import App, Text
+app = App(title="live")       # a window appears
+t = Text(app, text="hello")   # text appears in it
+t.text_color = "red"          # ...and turns red as you type
+t.text_color = (0, 255, 0)    # RGB tuples work too — this is green
+t.text_color = "#3366ff"      # ...as do hex strings
 ```
 
 ## Notes

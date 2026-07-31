@@ -1,7 +1,7 @@
 # Developing a Python GUI Lesson
 
 This repository contains test code and instructional material for teaching community college students how to program in Python. Specifically, **tkinter** and a library called **guizero** are used to help students understand object-oriented programming as well as GUI development. This content can be more
-interesting to students than text-based programs and procedural programming.
+interesting to students than text-based programs using procedural programming.
 
 ## Libraries
 
@@ -43,42 +43,28 @@ Either clone it:
 git clone git@github.com:lkoepsel/pyGUI.git
 ```
 
-or use GitHub's **Code → Download ZIP** button and unzip it.
+or use GitHub's **Code → Download ZIP** button, unzip it and move to a location where you have your schoolwork..
+
+![**Download zip file of the repository**](./static/zip_download.png)
 
 ### 5. Run your first program(s)
 
+**All of the files referenced will be in the *pyGUI* folder unless otherwise noted.**
+
 In Thonny: **File → Open…**, choose `hello/hello_tk.py`, and click the **Run** button (or press **F5**). A small window appears. Then try `hello/hello_guizero.py` — the same idea, written with guizero. Finally, just to show how a text-based program works, do the same for `main.py`.
 
-`hello_tk.py`:
+#### `hello_tk.py`:
 
-```python
-import tkinter as tk
+![**Output**](./static/hello_tk.png)
 
-app = tk.Tk()
-app.title("Hello tkinter")
-tk.Label(app, text="Hello, tkinter!").pack(padx=20, pady=20)
-app.mainloop()
-```
+#### `hello_guizero.py`:
 
-`hello_guizero.py`:
+![**Output**](./static/hello_guizero.png)
 
-```python
-from guizero import App, Text
+#### `main.py`
 
-app = App(title="Hello guizero")
-Text(app, text="Hello, guizero!")
-app.display()
-```
+![**Output**](./static/main.png)
 
-`main.py`
-```python
-def main():
-    print("Hello from text-based!")
-
-
-if __name__ == "__main__":
-    main()
-```
 ## Lessons
 
 * [`hello/`](hello) — minimal first programs in tkinter, guizero, and text.
@@ -93,11 +79,23 @@ a time (don't call `app.display()` in the Shell; that's only for programs):
 
 ```python
 from guizero import App, Text
-app = App(title="live")       # a window appears
+app = App(title="Live from Thonny!")       # a window appears
 t = Text(app, text="hello")   # text appears in it
 t.text_color = "red"          # ...and turns red as you type
 t.text_color = (0, 255, 0)    # RGB tuples work too — this is green
 t.text_color = "#3366ff"      # ...as do hex strings
+
+>>> from guizero import App, Text
+app = App(title="live")       # a window appears
+t = Text(app, text="hello")   # text appears in it
+t.text_color = "red"          # ...and turns red when you hit return
+```
+
+And try the following:
+```python
+t.text_color = (0, 255, 0)    # RGB tuples work too — this is green
+t.text_size = 36
+t.font = "Courier"
 ```
 
 ## Keyboard Shortcuts
